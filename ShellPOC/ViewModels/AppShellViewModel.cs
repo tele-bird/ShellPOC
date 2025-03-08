@@ -9,7 +9,6 @@ public partial class AppShellViewModel : BaseMarketViewModel
 	public AppShellViewModel(IAppStateManager appStateManager)
 		: base(appStateManager)
 	{
-		RouteToPush = "test";
 	}
 }
 

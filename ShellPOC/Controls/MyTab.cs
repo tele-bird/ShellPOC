@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls;
-using System;
 using System.Diagnostics;
 
 namespace ShellPOC.Controls;
