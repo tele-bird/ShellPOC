@@ -1,14 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:helpers="clr-namespace:ShellPOC.Helpers"
-             x:Class="ShellPOC.Views.MarketHomePage"
-             Shell.FlyoutBehavior="Disabled"
-             Shell.NavBarIsVisible="False">
-    <VerticalStackLayout VerticalOptions="Center">
+<views:BaseMarketPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ShellPOC.Views"
+    xmlns:viewmodels="clr-namespace:ShellPOC.ViewModels"
+    x:DataType="viewmodels:MarketHomeViewModel"
+    x:Class="ShellPOC.Views.MarketHomePage"
+    x:TypeArguments="viewmodels:MarketHomeViewModel"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="True"
+    Title="Home Page"
+    x:Name="this">
+    <Grid 
+        RowDefinitions="auto,auto,auto,auto,auto" 
+        ColumnDefinitions="*" 
+        VerticalOptions="Start">
         <Label 
-            Text="Home Page"
+            Grid.Row="0"
+            Text="{Binding Title, Source={x:Reference this}}"
+            TextDecorations="Underline"
+            FontAttributes="Bold"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+        <Label 
+            Grid.Row="1"
+            Text="{Binding .}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button 
+            Grid.Row="2"
+            Style="{StaticResource ButtonOutline}"
+            Text="{Binding RouteToPush,StringFormat='Shell.Current.GoToAsync( {0} )'}"
+            Command="{Binding PushPageCommand}"/>
+        <HorizontalStackLayout
+            Grid.Row="3"
+            HorizontalOptions="Center">
+            <Label 
+                Text="Route: "
+                VerticalTextAlignment="Center"/>
+            <Entry 
+                Grid.Row="3"
+                VerticalOptions="Center"
+                WidthRequest="300"
+                Text="{Binding RouteToPush}"/>
+        </HorizontalStackLayout>
+        <VerticalStackLayout 
+            Grid.Row="4">
+            <RadioButton 
+                x:Name="defaultRadioButton"
+                Value="//landing" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference defaultRadioButton}}" TextColor="Black"/>
+                        <Label Text="Back to Landing page with no market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+                </RadioButton>
+            <RadioButton 
+                x:Name="radioButton1"
+                Value="test" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton1}}" TextColor="Black"/>
+                        <Label Text="Test page pushed atop this tab with the same market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton2"
+                Value="test?marketId=4" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton2}}" TextColor="Black"/>
+                        <Label Text="Test page pushed atop this tab with market 4 selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton3"
+                Value="//market/brands" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton3}}" TextColor="Black"/>
+                        <Label Text="Brands tab with the same market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton4"
+                Value="//market/brands?marketId=4" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton4}}" TextColor="Black"/>
+                        <Label Text="Brands tab with market 4 selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton5"
+                Value="//market/plan" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton5}}" TextColor="Black"/>
+                        <Label Text="Plan tab with the same market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton6"
+                Value="//market/plan?marketId=4" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton6}}" TextColor="Black"/>
+                        <Label Text="Plan tab with market 4 selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton7"
+                Value="//market/maps" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton7}}" TextColor="Black"/>
+                        <Label Text="Maps tab with the same market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton8"
+                Value="//market/maps?marketId=4" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton8}}" TextColor="Black"/>
+                        <Label Text="Maps tab with market 4 selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+        </VerticalStackLayout>
+    </Grid>
+</views:BaseMarketPage>

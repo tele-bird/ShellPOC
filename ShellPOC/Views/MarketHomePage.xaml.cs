@@ -1,10 +1,14 @@
-﻿namespace ShellPOC.Views;
+﻿using ShellPOC.ViewModels;
+
+namespace ShellPOC.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class MarketHomePage : ContentPage
+public partial class MarketHomePage : BaseMarketPage<MarketHomeViewModel>
 {
-	public MarketHomePage()
+	public MarketHomePage(MarketHomeViewModel marketHomeViewModel)
+		: base(marketHomeViewModel)
 	{
 		InitializeComponent();
+		this.defaultRadioButton.IsChecked = true;
 	}
 }

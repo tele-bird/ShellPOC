@@ -2,23 +2,44 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace ShellPOC.ViewModels
+namespace ShellPOC.ViewModels;
+
+public abstract partial class BaseViewModel : ObservableObject, IDisposable
 {
-	public abstract partial class BaseViewModel : ObservableObject
-	{
-        [RelayCommand]
-        async Task PushTestPageAsync()
-        {
-            try
-            {
-                await Shell.Current.GoToAsync("//market/plan/test");
-                //await Shell.Current.GoToAsync("//market/plan");
-            }
-            catch (Exception exc)
-            {
-                Trace.WriteLine($"Caught a {exc.GetType().Name}: {exc.Message}");
-            }
-        }
+    protected Guid guid;
+    private bool firstAppeared = false;
+
+    protected BaseViewModel()
+    {
+        this.guid = Guid.NewGuid();
+    }
+
+[RelayCommand]
+protected virtual async Task OnAppearing()
+{
+    Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnAppearing)} >>");
+    if (!firstAppeared)
+    {
+        await OnFirstAppearing();
+        firstAppeared = true;
     }
 }
 
+protected virtual Task OnFirstAppearing()
+{
+    Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnFirstAppearing)} >>");
+    return Task.CompletedTask;
+}
+
+[RelayCommand]
+protected virtual Task OnDisappearing()
+{
+    Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnDisappearing)} >>");
+    return Task.CompletedTask;
+}
+
+    public virtual void Dispose()
+    {
+        Trace.WriteLine($"{guid} {GetType().Name}.{nameof(Dispose)} >>");
+    }
+}

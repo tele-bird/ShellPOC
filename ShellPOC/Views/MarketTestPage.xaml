@@ -4,12 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:ShellPOC.Views"
     xmlns:viewmodels="clr-namespace:ShellPOC.ViewModels"
-    x:DataType="viewmodels:MarketBrandsViewModel"
-    x:Class="ShellPOC.Views.MarketBrandsPage"
-    x:TypeArguments="viewmodels:MarketBrandsViewModel"
+    x:DataType="viewmodels:MarketTestViewModel"
+    x:Class="ShellPOC.Views.MarketTestPage"
+    x:TypeArguments="viewmodels:MarketTestViewModel"
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="True"
-    Title="Brands Page"
+    Title="Test Page"
     x:Name="this">
     <Grid 
         RowDefinitions="auto,auto,auto,auto,auto" 
@@ -48,15 +48,26 @@
             Grid.Row="4">
             <RadioButton 
                 x:Name="defaultRadioButton"
-                Value="//landing" 
+                Value=".." 
                 CheckedChanged="OnSelectedRouteToPushChanged">
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference defaultRadioButton}}" TextColor="Black"/>
+                        <Label Text="Back one page with the same market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton0"
+                Value="//landing" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton0}}" TextColor="Black"/>
                         <Label Text="Back to Landing page with no market selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>
-                </RadioButton>
+            </RadioButton>
             <RadioButton 
                 x:Name="radioButton1"
                 Value="test" 
@@ -64,7 +75,7 @@
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference radioButton1}}" TextColor="Black"/>
-                        <Label Text="Test page pushed atop this tab with the same market selected" TextColor="Gray"/>
+                        <Label Text="Test page pushed atop this page with the same market selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>
             </RadioButton>
@@ -75,7 +86,7 @@
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference radioButton2}}" TextColor="Black"/>
-                        <Label Text="Test page pushed atop this tab with market 4 selected" TextColor="Gray"/>
+                        <Label Text="Test page pushed atop this page with market 4 selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>
             </RadioButton>
@@ -103,44 +114,66 @@
             </RadioButton>
             <RadioButton 
                 x:Name="radioButton5"
-                Value="//market/plan" 
+                Value="//market/brands" 
                 CheckedChanged="OnSelectedRouteToPushChanged">
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference radioButton5}}" TextColor="Black"/>
-                        <Label Text="Plan tab with the same market selected" TextColor="Gray"/>
+                        <Label Text="Brands tab with the same market selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>
             </RadioButton>
             <RadioButton 
                 x:Name="radioButton6"
-                Value="//market/plan?marketId=4" 
+                Value="//market/brands?marketId=4" 
                 CheckedChanged="OnSelectedRouteToPushChanged">
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference radioButton6}}" TextColor="Black"/>
-                        <Label Text="Plan tab with market 4 selected" TextColor="Gray"/>
+                        <Label Text="Brands tab with market 4 selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>
             </RadioButton>
             <RadioButton 
                 x:Name="radioButton7"
-                Value="//market/maps" 
+                Value="//market/plan" 
                 CheckedChanged="OnSelectedRouteToPushChanged">
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference radioButton7}}" TextColor="Black"/>
-                        <Label Text="Maps tab with the same market selected" TextColor="Gray"/>
+                        <Label Text="Plan tab with the same market selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>
             </RadioButton>
             <RadioButton 
                 x:Name="radioButton8"
-                Value="//market/maps?marketId=4" 
+                Value="//market/plan?marketId=4" 
                 CheckedChanged="OnSelectedRouteToPushChanged">
                 <RadioButton.Content>
                     <VerticalStackLayout>
                         <Label Text="{Binding Value,Source={x:Reference radioButton8}}" TextColor="Black"/>
+                        <Label Text="Plan tab with market 4 selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton9"
+                Value="//market/maps" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton9}}" TextColor="Black"/>
+                        <Label Text="Maps tab with the same market selected" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton 
+                x:Name="radioButton10"
+                Value="//market/maps?marketId=4" 
+                CheckedChanged="OnSelectedRouteToPushChanged">
+                <RadioButton.Content>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Value,Source={x:Reference radioButton10}}" TextColor="Black"/>
                         <Label Text="Maps tab with market 4 selected" TextColor="Gray"/>
                     </VerticalStackLayout>
                 </RadioButton.Content>

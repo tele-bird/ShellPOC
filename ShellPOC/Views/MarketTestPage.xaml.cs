@@ -3,10 +3,10 @@
 namespace ShellPOC.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class MarketPlanPage : BaseMarketPage<MarketPlanViewModel>
+public partial class MarketTestPage : BaseMarketPage<MarketTestViewModel>
 {
-	public MarketPlanPage(MarketPlanViewModel marketPlanViewModel)
-		: base(marketPlanViewModel)
+	public MarketTestPage(MarketTestViewModel marketTestViewModel)
+		: base(marketTestViewModel)
 	{
 		InitializeComponent();
 		this.defaultRadioButton.IsChecked = true;
