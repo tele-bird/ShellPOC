@@ -13,6 +13,7 @@
     NavBarHasShadow="True">
     <Shell.TitleView>
         <HorizontalStackLayout HorizontalOptions="Center">
+            <!-- <Label Text="{Binding CurrentState,Source={x:Reference ThisShell}}"/> -->
             <Label VerticalOptions="Center">
                 <Label.Text>
                     <MultiBinding StringFormat="{}{0}?marketId={1}">

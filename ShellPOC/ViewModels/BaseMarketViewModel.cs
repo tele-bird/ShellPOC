@@ -94,15 +94,15 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 			if(NavigationHelper.TryGetKnownTabSubpath(pathAndQuery[0], out var tabPath, out var remainingRelativePath))
 			{
 				Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - step1: navigating to path: {tabPath} parameters: {parametetersDictionary.ToDebugString()}");
-				await Shell.Current.GoToAsync(tabPath, parameters);
+				await Shell.Current.GoToAsync(tabPath, true, parameters);
 				Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - step2: navigating to path: {remainingRelativePath} parameters: {parametetersDictionary.ToDebugString()}");
-				await Shell.Current.GoToAsync(remainingRelativePath, parameters);
+				await Shell.Current.GoToAsync(remainingRelativePath, true, parameters);
 			}
 			// otherwise, we navigate normally:
 			else
 			{
 				Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - navigating to path: {pathAndQuery[0]} parameters: {parametetersDictionary.ToDebugString()}");
-				await Shell.Current.GoToAsync(pathAndQuery[0], parameters);
+				await Shell.Current.GoToAsync(pathAndQuery[0], true, parameters);
 			}
 
         }
