@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Web;
@@ -6,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using ShellPOC.Events;
 using ShellPOC.Extensions;
 using ShellPOC.Helpers;
+using ShellPOC.Models;
 using ShellPOC.Services;
 
 namespace ShellPOC.ViewModels;
@@ -19,13 +21,24 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 	[ObservableProperty]
 	private int? marketId;
 
+	[ObservableProperty]
+	private ObservableCollection<ShellPage> shellPages;
+
+	[ObservableProperty]
+	private ShellPage? selectedShellPage;
+
     [ObservableProperty]
     private string? routeToPush;
 
-	protected BaseMarketViewModel(IAppStateManager appStateManager)
+	protected BaseMarketViewModel(IAppStateManager appStateManager, params ShellPage[] shellPages)
 	{
+		if(shellPages.Length == 0)
+		{
+			throw new ArgumentOutOfRangeException(nameof(shellPages), "must have at least one element");
+		}
 		this.appStateManager = appStateManager;
 		this.appStateManager.SelectedMarketChanged += OnSelectedMarketChanged;
+		this.shellPages = new ObservableCollection<ShellPage>(shellPages);
 	}
 
 	protected override Task OnAppearing()
@@ -34,7 +47,13 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 		return base.OnAppearing();
 	}
 
-	private void OnSelectedMarketChanged(SelectedMarketChangedEventArgs args)
+    protected override Task OnFirstAppearing()
+    {
+		this.SelectedShellPage = ShellPages[0];
+        return base.OnFirstAppearing();
+    }
+
+    private void OnSelectedMarketChanged(SelectedMarketChangedEventArgs args)
 	{
 		Trace.WriteLine($"{GetType().Name}.{nameof(OnSelectedMarketChanged)} from {MarketId} to {args.MarketId}");
 		MarketId = args.MarketId;
@@ -46,6 +65,14 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 		{
 			Trace.WriteLine($"{GetType().Name}.{nameof(OnPropertyChanged)}({nameof(MarketId)}) to {MarketId}");
 			appStateManager.SelectedMarketId = MarketId;
+		}
+		else if(args.PropertyName == nameof(SelectedShellPage))
+		{
+			Trace.WriteLine($"{GetType().Name}.{nameof(OnPropertyChanged)}({nameof(SelectedShellPage)}) to {SelectedShellPage}");
+			if(SelectedShellPage != null)
+			{
+				RouteToPush = SelectedShellPage.Path;
+			}
 		}
 		base.OnPropertyChanged(args);
 	}

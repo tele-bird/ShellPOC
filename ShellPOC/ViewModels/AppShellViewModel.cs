@@ -1,4 +1,5 @@
-﻿using ShellPOC.Services;
+﻿using ShellPOC.Models;
+using ShellPOC.Services;
 
 namespace ShellPOC.ViewModels;
 
@@ -7,7 +8,7 @@ public partial class AppShellViewModel : BaseMarketViewModel
 	protected override bool IsQueryParameterRequired => false;
 
 	public AppShellViewModel(IAppStateManager appStateManager)
-		: base(appStateManager)
+		: base(appStateManager, new ShellPage(string.Empty, string.Empty))
 	{
 	}
 }

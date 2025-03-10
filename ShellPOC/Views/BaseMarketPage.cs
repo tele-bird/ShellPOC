@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using ShellPOC.Extensions;
 using ShellPOC.ViewModels;
 
 namespace ShellPOC.Views;

@@ -2,6 +2,7 @@
 <views:BaseMarketPage 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ShellPOC.Models"
     xmlns:views="clr-namespace:ShellPOC.Views"
     xmlns:viewmodels="clr-namespace:ShellPOC.ViewModels"
     x:DataType="viewmodels:MarketMapsViewModel"
@@ -11,140 +12,61 @@
     Shell.NavBarIsVisible="True"
     Title="Maps Page"
     x:Name="this">
-    <Grid 
-        RowDefinitions="auto,auto,auto,auto,auto" 
-        ColumnDefinitions="*" 
-        VerticalOptions="Start">
-        <Label 
-            Grid.Row="0"
-            Text="{Binding Title, Source={x:Reference this}}"
-            TextDecorations="Underline"
-            FontAttributes="Bold"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label 
-            Grid.Row="1"
-            Text="{Binding .}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Button 
-            Grid.Row="2"
-            Style="{StaticResource ButtonOutline}"
-            Text="{Binding RouteToPush,StringFormat='Shell.Current.GoToAsync( {0} )'}"
-            Command="{Binding PushPageCommand}"/>
-        <HorizontalStackLayout
-            Grid.Row="3"
-            HorizontalOptions="Center">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto,auto,auto">
             <Label 
-                Text="Route: "
-                VerticalTextAlignment="Center"/>
-            <Entry 
+                Grid.Row="0"
+                Text="{Binding Title, Source={x:Reference this}}"
+                TextDecorations="Underline"
+                FontAttributes="Bold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Button 
+                Grid.Row="1"
+                Margin="10,0"
+                FontSize="Micro"
+                Style="{StaticResource ButtonOutline}"
+                Text="{Binding RouteToPush,StringFormat='Shell.Current.GoToAsync( {0} )'}"
+                Command="{Binding PushPageCommand}"/>
+            <HorizontalStackLayout
+                Grid.Row="2"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="Route: "
+                    VerticalTextAlignment="Center"/>
+                <Entry 
+                    VerticalOptions="Center"
+                    WidthRequest="300"
+                    Text="{Binding RouteToPush}"/>
+            </HorizontalStackLayout>
+            <CollectionView
                 Grid.Row="3"
-                VerticalOptions="Center"
-                WidthRequest="300"
-                Text="{Binding RouteToPush}"/>
-        </HorizontalStackLayout>
-        <VerticalStackLayout 
-            Grid.Row="4">
-            <RadioButton 
-                x:Name="defaultRadioButton"
-                Value="//landing" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference defaultRadioButton}}" TextColor="Black"/>
-                        <Label Text="Back to Landing page with no market selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton1"
-                Value="test" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton1}}" TextColor="Black"/>
-                        <Label Text="Test page pushed atop this tab with the same market selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton2"
-                Value="test?marketId=4" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton2}}" TextColor="Black"/>
-                        <Label Text="Test page pushed atop this tab with market 4 selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton7"
-                Value="//market/home" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton7}}" TextColor="Black"/>
-                        <Label Text="Home tab with the same market selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton8"
-                Value="//market/home?marketId=4" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton8}}" TextColor="Black"/>
-                        <Label Text="Home tab with market 4 selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton3"
-                Value="//market/brands" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton3}}" TextColor="Black"/>
-                        <Label Text="Brands tab with the same market selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton4"
-                Value="//market/brands?marketId=4" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton4}}" TextColor="Black"/>
-                        <Label Text="Brands tab with market 4 selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton5"
-                Value="//market/plan" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton5}}" TextColor="Black"/>
-                        <Label Text="Plan tab with the same market selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-            <RadioButton 
-                x:Name="radioButton6"
-                Value="//market/plan?marketId=4" 
-                CheckedChanged="OnSelectedRouteToPushChanged">
-                <RadioButton.Content>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Value,Source={x:Reference radioButton6}}" TextColor="Black"/>
-                        <Label Text="Plan tab with market 4 selected" TextColor="Gray"/>
-                    </VerticalStackLayout>
-                </RadioButton.Content>
-            </RadioButton>
-        </VerticalStackLayout>
-    </Grid>
+                Margin="20"
+                ItemsSource="{Binding ShellPages}"
+                SelectedItem="{Binding SelectedShellPage,Mode=TwoWay}"
+                VerticalScrollBarVisibility="Always"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout 
+                        Orientation="Vertical"
+                        ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShellPage">
+                        <Border StrokeThickness="2" Padding="10">
+                            <VerticalStackLayout>
+                                <Label 
+                                    FontSize="Micro"
+                                    Text="{Binding Description}" 
+                                    TextColor="Gray"/>
+                                <Label 
+                                    FontSize="Micro"
+                                    Text="{Binding Path}"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
 </views:BaseMarketPage>

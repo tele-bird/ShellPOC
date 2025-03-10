@@ -9,6 +9,5 @@ public partial class MarketBrandsPage : BaseMarketPage<MarketBrandsViewModel>
 		: base(marketBrandsViewModel)
 	{
 		InitializeComponent();
-		this.defaultRadioButton.IsChecked = true;
 	}
 }
