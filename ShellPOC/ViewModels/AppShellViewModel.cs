@@ -1,4 +1,5 @@
-﻿using ShellPOC.Models;
+﻿using CommunityToolkit.Mvvm.Input;
+using ShellPOC.Models;
 using ShellPOC.Services;
 
 namespace ShellPOC.ViewModels;
@@ -10,6 +11,12 @@ public partial class AppShellViewModel : BaseMarketViewModel
 	public AppShellViewModel(IAppStateManager appStateManager)
 		: base(appStateManager, new ShellPage(string.Empty, string.Empty))
 	{
+	}
+
+	[RelayCommand]
+	async Task CenterViewAsync()
+	{
+		await Shell.Current.DisplayAlert("Alert", "You tapped the center view", "OK");
 	}
 }
 

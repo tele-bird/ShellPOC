@@ -27,20 +27,28 @@
     <ShellItem>
         <ShellContent ContentTemplate="{DataTemplate views:LandingPage}" Route="landing"/>
     </ShellItem>
-    <TabBar Route="market">
-        <controls:MyTab Route="home" Title="Home">
+    <controls:CustomTabBar 
+        Route="market" 
+        CenterViewText="+" 
+        CenterViewVisible="True" 
+        CenterViewBackgroundColor="HotPink" 
+        CenterViewCommand="{Binding CenterViewCommand}">
+        <controls:CustomTabBar.CenterViewImageSource>
+            <FileImageSource File="dotnet_bot.png"/>
+        </controls:CustomTabBar.CenterViewImageSource>
+        <controls:MyTab Route="home" Title="Home" Icon="dotnet_bot.png">
             <ShellContent ContentTemplate="{DataTemplate views:MarketHomePage}"/>
         </controls:MyTab>
-        <controls:MyTab Route="brands" Title="Brands">
+        <controls:MyTab Route="brands" Title="Brands" Icon="dotnet_bot.png">
             <ShellContent ContentTemplate="{DataTemplate views:MarketBrandsPage}" />
         </controls:MyTab>
-        <controls:MyTab Route="plan" Title="Plan">
+        <controls:MyTab Route="plan" Title="Plan" Icon="dotnet_bot.png">
             <ShellContent ContentTemplate="{DataTemplate views:MarketPlanPage}" />
         </controls:MyTab>
-        <controls:MyTab Route="maps" Title="Maps">
+        <controls:MyTab Route="maps" Title="Maps" Icon="dotnet_bot.png">
             <ShellContent ContentTemplate="{DataTemplate views:MarketMapsPage}" />
         </controls:MyTab>
-    </TabBar>
+    </controls:CustomTabBar>
 
 </Shell>
 

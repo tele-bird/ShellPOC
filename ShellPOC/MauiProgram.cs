@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ShellPOC.Renderers;
 using ShellPOC.Services;
 using ShellPOC.ViewModels;
 using ShellPOC.Views;
@@ -18,6 +19,10 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            .ConfigureMauiHandlers(handlers =>
+            {
+                handlers.AddHandler<Shell, CustomShellRenderer>();
             });
 
         // services:
