@@ -16,13 +16,13 @@ public partial class AppShell : Shell
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigatedTo)} >>");
+        // Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigatedTo)} >>");
         base.OnNavigatedTo(args);
     }
 
     protected override void OnNavigating(ShellNavigatingEventArgs args)
     {
-        Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigating)} >> Current: {args.Current?.Location} Target: {args.Target?.Location} Source: {args.Source}");
+        // Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigating)} >> Current: {args.Current?.Location} Target: {args.Target?.Location} Source: {args.Source}");
         base.OnNavigating(args);
     }
 }

@@ -17,7 +17,7 @@ public abstract partial class BaseViewModel : ObservableObject, IDisposable
 [RelayCommand]
 protected virtual async Task OnAppearing()
 {
-    Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnAppearing)} >>");
+    // Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnAppearing)} >>");
     if (!firstAppeared)
     {
         await OnFirstAppearing();
@@ -27,14 +27,14 @@ protected virtual async Task OnAppearing()
 
 protected virtual Task OnFirstAppearing()
 {
-    Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnFirstAppearing)} >>");
+    // Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnFirstAppearing)} >>");
     return Task.CompletedTask;
 }
 
 [RelayCommand]
 protected virtual Task OnDisappearing()
 {
-    Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnDisappearing)} >>");
+    // Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnDisappearing)} >>");
     return Task.CompletedTask;
 }
 

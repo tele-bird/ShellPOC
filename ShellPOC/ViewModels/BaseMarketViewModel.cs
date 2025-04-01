@@ -55,7 +55,7 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 
     private void OnSelectedMarketChanged(SelectedMarketChangedEventArgs args)
 	{
-		Trace.WriteLine($"{GetType().Name}.{nameof(OnSelectedMarketChanged)} from {MarketId} to {args.MarketId}");
+		// Trace.WriteLine($"{GetType().Name}.{nameof(OnSelectedMarketChanged)} from {MarketId} to {args.MarketId}");
 		MarketId = args.MarketId;
 	}
 
@@ -63,12 +63,12 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 	{
 		if(args.PropertyName == nameof(MarketId))
 		{
-			Trace.WriteLine($"{GetType().Name}.{nameof(OnPropertyChanged)}({nameof(MarketId)}) to {MarketId}");
+			// Trace.WriteLine($"{GetType().Name}.{nameof(OnPropertyChanged)}({nameof(MarketId)}) from {appStateManager.SelectedMarketId}  to {MarketId}");
 			appStateManager.SelectedMarketId = MarketId;
 		}
 		else if(args.PropertyName == nameof(SelectedShellPage))
 		{
-			Trace.WriteLine($"{GetType().Name}.{nameof(OnPropertyChanged)}({nameof(SelectedShellPage)}) to {SelectedShellPage}");
+			// Trace.WriteLine($"{GetType().Name}.{nameof(OnPropertyChanged)}({nameof(SelectedShellPage)}) to {SelectedShellPage}");
 			if(SelectedShellPage != null)
 			{
 				RouteToPush = SelectedShellPage.Path;
@@ -79,7 +79,7 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-		Trace.WriteLine($"{GetType().Name}.{nameof(ApplyQueryAttributes)} >> query: {query.ToQueryString()}");
+		//Trace.WriteLine($"{GetType().Name}.{nameof(ApplyQueryAttributes)} >> query: {query.ToQueryString()}"); 
 		int? marketId = null;
 		if(query.TryGetValue(marketIdQueryParameterKey, out var marketIdObject))
 		{
@@ -95,13 +95,14 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 			throw new ArgumentException($"No market is currently selected, so query parameter {marketIdQueryParameterKey} is required for {nameof(BaseMarketViewModel)} subclass: {GetType().Name}");
 		}
 
+		Trace.WriteLine($"{GetType().Name}.{nameof(ApplyQueryAttributes)} >> query: {query.ToQueryString()} setting MarketId from {MarketId} to {marketId}");
 		MarketId = marketId;
     }
 
     [RelayCommand]
     async Task PushPageAsync()
     {
-        Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} >> with RouteToPush: {RouteToPush}");
+        // Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} >> with RouteToPush: {RouteToPush}");
         try
         {
             ArgumentNullException.ThrowIfNullOrEmpty(RouteToPush);
