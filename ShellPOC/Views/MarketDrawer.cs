@@ -16,6 +16,7 @@ public abstract class MarketDrawer<TMarketViewModel> : BaseMarketPage<TMarketVie
 #endif
 
     private double positionY;
+    private VerticalStackLayout backdropStack;
     private Border drawerContent;
     private Grid topBar;
 
@@ -67,12 +68,14 @@ public abstract class MarketDrawer<TMarketViewModel> : BaseMarketPage<TMarketVie
     public async Task Open()
     {
         await drawerContent.TranslateTo(0, InitialPosition, 250, Easing.CubicIn);
+        await backdropStack.FadeTo(0.5, 100, Easing.CubicIn);
+        
     }
 
     public async Task Close()
     {
+        _ = backdropStack.FadeTo(0, 250, Easing.CubicOut);
         await drawerContent.TranslateTo(0, ContentHeight!.Value + InitialPosition, 250, Easing.CubicOut);
-
         await Shell.Current.GoToAsync("..");
     }
 
@@ -85,11 +88,11 @@ public abstract class MarketDrawer<TMarketViewModel> : BaseMarketPage<TMarketVie
                 BackgroundColor = Colors.Transparent
             };
 
-            var backdropStack = new VerticalStackLayout
+            backdropStack = new VerticalStackLayout
             {
                 BackgroundColor = Colors.Black,
-                Opacity = 0.5,
-                Margin = new Thickness(0, -5, 0, 0)
+                Opacity = 0,
+                Margin = new Thickness(0, -5, 0, 0),
             };
             var backdropTap = new TapGestureRecognizer();
             backdropTap.Tapped += Backdrop_Tapped;
