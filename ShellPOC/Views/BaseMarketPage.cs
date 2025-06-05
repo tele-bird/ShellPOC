@@ -5,8 +5,8 @@ namespace ShellPOC.Views;
 public abstract partial class BaseMarketPage<TBaseMarketViewModel> : BaseContentPage<TBaseMarketViewModel>
   where TBaseMarketViewModel : BaseMarketViewModel
 {
-    protected BaseMarketPage(TBaseMarketViewModel baseMarketViewModel)
-      : base(baseMarketViewModel)
+    protected BaseMarketPage(TBaseMarketViewModel baseViewModel)
+      : base(baseViewModel)
     {
     }
 

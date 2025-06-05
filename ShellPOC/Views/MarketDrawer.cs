@@ -4,8 +4,8 @@ using ShellPOC.ViewModels;
 
 namespace ShellPOC.Views;
 
-public abstract class Drawer<TViewModel> : BaseContentPage<TViewModel>
-    where TViewModel : BaseViewModel
+public abstract class MarketDrawer<TMarketViewModel> : BaseMarketPage<TMarketViewModel>
+    where TMarketViewModel : BaseMarketViewModel
 {
 
 #if IOS
@@ -21,7 +21,7 @@ public abstract class Drawer<TViewModel> : BaseContentPage<TViewModel>
 
 
     public static readonly BindableProperty ContentHeightProperty =
-        BindableProperty.Create(nameof(ContentHeightProperty), typeof(double?), typeof(Drawer<TViewModel>));
+        BindableProperty.Create(nameof(ContentHeightProperty), typeof(double?), typeof(MarketDrawer<TMarketViewModel>));
 
     public double? ContentHeight
     {
@@ -30,7 +30,7 @@ public abstract class Drawer<TViewModel> : BaseContentPage<TViewModel>
     }
 
     public static readonly BindableProperty CloseOnSwipeProperty =
-      BindableProperty.Create(nameof(CloseOnSwipeProperty), typeof(bool), typeof(Drawer<TViewModel>), true);
+      BindableProperty.Create(nameof(CloseOnSwipeProperty), typeof(bool), typeof(MarketDrawer<TMarketViewModel>), true);
 
     public bool CloseOnSwipe
     {
@@ -39,7 +39,7 @@ public abstract class Drawer<TViewModel> : BaseContentPage<TViewModel>
     }
 
     public static readonly BindableProperty CloseButtonProperty =
-    BindableProperty.Create(nameof(CloseButtonProperty), typeof(bool), typeof(Drawer<TViewModel>), false);
+    BindableProperty.Create(nameof(CloseButtonProperty), typeof(bool), typeof(MarketDrawer<TMarketViewModel>), false);
 
     public bool CloseButton
     {
@@ -48,7 +48,7 @@ public abstract class Drawer<TViewModel> : BaseContentPage<TViewModel>
     }
 
     public static readonly BindableProperty DrawerColorProperty =
-     BindableProperty.Create(nameof(DrawerColorProperty), typeof(Color), typeof(Drawer<TViewModel>));
+     BindableProperty.Create(nameof(DrawerColorProperty), typeof(Color), typeof(MarketDrawer<TMarketViewModel>));
 
     public Color? DrawerColor
     {
@@ -56,7 +56,7 @@ public abstract class Drawer<TViewModel> : BaseContentPage<TViewModel>
         set => SetValue(DrawerColorProperty, value);
     }
 
-    protected Drawer(TViewModel baseViewModel) : base(baseViewModel)
+    protected MarketDrawer(TMarketViewModel baseViewModel) : base(baseViewModel)
     {
         ControlTemplate = CreateDrawerControlTemplate();
 

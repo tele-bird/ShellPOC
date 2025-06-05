@@ -3,7 +3,7 @@ using ShellPOC.ViewModels;
 
 namespace ShellPOC.Views;
 
-public abstract partial class BaseContentPage<TBaseViewModel> : ContentPage
+public abstract partial class BaseContentPage<TBaseViewModel> : ContentPage, IDisposable
     where TBaseViewModel : BaseViewModel
 {
     protected TBaseViewModel ViewModel => (TBaseViewModel)BindingContext;
@@ -23,5 +23,10 @@ public abstract partial class BaseContentPage<TBaseViewModel> : ContentPage
             EventName = nameof(Disappearing),
             Command = ViewModel.DisappearingCommand
         });
+    }
+
+    public void Dispose()
+    {
+        ViewModel.Dispose();
     }
 }

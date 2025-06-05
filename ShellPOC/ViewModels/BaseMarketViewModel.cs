@@ -43,7 +43,7 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 
 	protected override Task OnAppearing()
 	{
-		Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnAppearing)} >> MarketId: {MarketId}");
+		//Trace.WriteLine($"{guid} {GetType().Name}.{nameof(OnAppearing)} >> MarketId: {MarketId}");
 		return base.OnAppearing();
 	}
 
@@ -95,7 +95,7 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 			throw new ArgumentException($"No market is currently selected, so query parameter {marketIdQueryParameterKey} is required for {nameof(BaseMarketViewModel)} subclass: {GetType().Name}");
 		}
 
-		Trace.WriteLine($"{GetType().Name}.{nameof(ApplyQueryAttributes)} >> query: {query.ToQueryString()} setting MarketId from {MarketId} to {marketId}");
+		//Trace.WriteLine($"{GetType().Name}.{nameof(ApplyQueryAttributes)} >> query: {query.ToQueryString()} setting MarketId from {MarketId} to {marketId}");
 		MarketId = marketId;
     }
 
@@ -107,7 +107,7 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
         {
             ArgumentNullException.ThrowIfNullOrEmpty(RouteToPush);
             var url = new Uri(RouteToPush, UriKind.Relative);
-            Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - url: {url}");
+            //Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - url: {url}");
             IDictionary<string, object>? parametetersDictionary = new Dictionary<string, object>();
             var pathAndQuery = RouteToPush.Split('?');
             if(pathAndQuery.Length > 1)
@@ -121,15 +121,15 @@ public abstract partial class BaseMarketViewModel : BaseViewModel, IQueryAttribu
 			var parameters = new ShellNavigationQueryParameters(parametetersDictionary);
 			if(NavigationHelper.TryGetKnownTabSubpath(pathAndQuery[0], out var tabPath, out var remainingRelativePath))
 			{
-				Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - step1: navigating to path: {tabPath} parameters: {parametetersDictionary.ToDebugString()}");
+				//Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - step1: navigating to path: {tabPath} parameters: {parametetersDictionary.ToDebugString()}");
 				await Shell.Current.GoToAsync(tabPath, true, parameters);
-				Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - step2: navigating to path: {remainingRelativePath} parameters: {parametetersDictionary.ToDebugString()}");
+				//Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - step2: navigating to path: {remainingRelativePath} parameters: {parametetersDictionary.ToDebugString()}");
 				await Shell.Current.GoToAsync(remainingRelativePath, true, parameters);
 			}
 			// otherwise, we navigate normally:
 			else
 			{
-				Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - navigating to path: {pathAndQuery[0]} parameters: {parametetersDictionary.ToDebugString()}");
+				//Trace.WriteLine($"{guid} {GetType().Name}.{nameof(PushPageAsync)} - navigating to path: {pathAndQuery[0]} parameters: {parametetersDictionary.ToDebugString()}");
 				await Shell.Current.GoToAsync(pathAndQuery[0], true, parameters);
 			}
 

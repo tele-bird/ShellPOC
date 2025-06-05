@@ -32,8 +32,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<MarketMapsPage, MarketMapsViewModel>();
         builder.Services.AddSingleton<MarketPlanPage, MarketPlanViewModel>();
         builder.Services.AddTransient<MarketTestPage, MarketTestViewModel>();
-        builder.Services.AddTransient<FullDrawerPage, FullDrawerViewModel>();
-        builder.Services.AddTransient<HalfDrawerPage, HalfDrawerViewModel>();
+        builder.Services.AddTransient<FullMarketDrawerPage, FullMarketDrawerViewModel>();
+        builder.Services.AddTransient<HalfMarketDrawerPage, HalfMarketDrawerViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

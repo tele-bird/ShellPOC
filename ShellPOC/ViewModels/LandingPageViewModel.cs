@@ -11,8 +11,8 @@ public partial class LandingPageViewModel : BaseMarketViewModel
         : base(
 			appStateManager, 
 			new ShellPage("//market/home?marketId=123", "Home tab with marketId 123"),
-			new ShellPage("fulldrawer", "Full drawer pushed atop this page with the same market selected"),
-			new ShellPage("halfdrawer", "Half drawer pushed atop this page with the same market selected"),
+			new ShellPage("//market/home/fulldrawer?marketId=123", "Home tab with marketId 123"),
+			new ShellPage("//market/home/halfdrawer?marketId=123", "Home tab with marketId 123"),
 			new ShellPage("//market/home/test?marketId=4", "Test page pushed atop Home tab with marketId 4"),
 			new ShellPage("//market/brands?marketId=123", "Brands tab with marketId 123"),
 			new ShellPage("//market/brands/test?marketId=4", "Test page pushed atop Brands tab with marketId 4"),

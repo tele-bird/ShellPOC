@@ -8,10 +8,10 @@ using ShellPOC.ViewModels;
 namespace ShellPOC.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class FullDrawerPage : Drawer<FullDrawerViewModel>
+public partial class FullMarketDrawerPage : MarketDrawer<FullMarketDrawerViewModel>
 {
-    public FullDrawerPage(FullDrawerViewModel fullDrawerViewModel)
-        : base(fullDrawerViewModel)
+    public FullMarketDrawerPage(FullMarketDrawerViewModel fullMarketDrawerViewModel)
+        : base(fullMarketDrawerViewModel)
     {
         InitializeComponent();
     }

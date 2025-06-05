@@ -11,61 +11,59 @@
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="True"
     Title="Maps Page"
-    x:Name="this">
+    x:Name="This">
     <ContentPage.Content>
-        <Grid RowDefinitions="auto,auto,auto,auto">
-            <Label 
-                Grid.Row="0"
-                Text="{Binding Title, Source={x:Reference this}}"
-                TextDecorations="Underline"
-                FontAttributes="Bold"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-            <Button 
-                Grid.Row="1"
-                Margin="10,0"
-                FontSize="Micro"
-                Text="{Binding RouteToPush,StringFormat='Shell.Current.GoToAsync( {0} )'}"
-                Command="{Binding PushPageCommand}"/>
-            <HorizontalStackLayout
-                Grid.Row="2"
-                HorizontalOptions="Center">
-                <Label 
-                    Text="Route: "
-                    VerticalTextAlignment="Center"/>
-                <Entry 
-                    VerticalOptions="Center"
-                    WidthRequest="300"
-                    Text="{Binding RouteToPush}"/>
-            </HorizontalStackLayout>
-            <CollectionView
-                Grid.Row="3"
-                Margin="20"
-                ItemsSource="{Binding ShellPages}"
-                SelectedItem="{Binding SelectedShellPage,Mode=TwoWay}"
-                VerticalScrollBarVisibility="Always"
-                SelectionMode="Single">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout 
-                        Orientation="Vertical"
-                        ItemSpacing="10"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:ShellPage">
-                        <Border StrokeThickness="2" Padding="10">
-                            <VerticalStackLayout>
-                                <Label 
-                                    FontSize="Micro"
-                                    Text="{Binding Description}" 
-                                    TextColor="Gray"/>
-                                <Label 
-                                    FontSize="Micro"
-                                    Text="{Binding Path}"/>
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
+        <CollectionView
+            Margin="20"
+            ItemsSource="{Binding ShellPages}"
+            SelectedItem="{Binding SelectedShellPage,Mode=TwoWay}"
+            VerticalScrollBarVisibility="Always"
+            SelectionMode="Single">
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <Label 
+                        Text="{Binding Title, Source={x:Reference This}}"
+                        TextDecorations="Underline"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center" />
+                    <Button 
+                        Margin="10,0"
+                        FontSize="Micro"
+                        Text="{Binding RouteToPush,StringFormat='Shell.Current.GoToAsync'}"
+                        Command="{Binding PushPageCommand}"/>
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center">
+                        <Label 
+                            Text="Route: "
+                            VerticalTextAlignment="Center"/>
+                        <Entry 
+                            VerticalOptions="Center"
+                            WidthRequest="300"
+                            Text="{Binding RouteToPush}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout 
+                    Orientation="Vertical"
+                    ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ShellPage">
+                    <Border StrokeThickness="2" Padding="10">
+                        <VerticalStackLayout>
+                            <Label 
+                                FontSize="Micro"
+                                Text="{Binding Description}" 
+                                TextColor="Gray"/>
+                            <Label 
+                                FontSize="Micro"
+                                Text="{Binding Path}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentPage.Content>
 </views:BaseMarketPage>
