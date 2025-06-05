@@ -11,18 +11,20 @@ public partial class AppShell : Shell
 	{
         BindingContext = appShellViewModel;
         Routing.RegisterRoute("test", typeof(MarketTestPage));
+        Routing.RegisterRoute("fulldrawer", typeof(FullDrawerPage));
+        Routing.RegisterRoute("halfdrawer", typeof(HalfDrawerPage));
         InitializeComponent();
     }
 
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
-        // Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigatedTo)} >>");
+        Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigatedTo)} >>");
         base.OnNavigatedTo(args);
     }
 
     protected override void OnNavigating(ShellNavigatingEventArgs args)
     {
-        // Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigating)} >> Current: {args.Current?.Location} Target: {args.Target?.Location} Source: {args.Source}");
+        Trace.WriteLine($"{GetType().Name}.{nameof(OnNavigating)} >> Current: {args.Current?.Location} Target: {args.Target?.Location} Source: {args.Source}");
         base.OnNavigating(args);
     }
 }

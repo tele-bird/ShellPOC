@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using ShellPOC.Renderers;
 using ShellPOC.Services;
 using ShellPOC.ViewModels;
 using ShellPOC.Views;
@@ -12,18 +11,15 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .UseMauiCommunityToolkit()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            })
-            .ConfigureMauiHandlers(handlers =>
-            {
-                handlers.AddHandler<Shell, CustomShellRenderer>();
-            });
+		builder
+			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
+			.ConfigureFonts(fonts =>
+			{
+				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				fonts.AddFont("Juniper.ttf", "Juniper");
+			});
 
         // services:
         builder.Services.AddSingleton<IAppStateManager, AppStateManager>();
@@ -36,6 +32,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<MarketMapsPage, MarketMapsViewModel>();
         builder.Services.AddSingleton<MarketPlanPage, MarketPlanViewModel>();
         builder.Services.AddTransient<MarketTestPage, MarketTestViewModel>();
+        builder.Services.AddTransient<FullDrawerPage, FullDrawerViewModel>();
+        builder.Services.AddTransient<HalfDrawerPage, HalfDrawerViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

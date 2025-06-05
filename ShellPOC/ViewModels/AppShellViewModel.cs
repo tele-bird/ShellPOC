@@ -12,11 +12,5 @@ public partial class AppShellViewModel : BaseMarketViewModel
 		: base(appStateManager, new ShellPage(string.Empty, string.Empty))
 	{
 	}
-
-	[RelayCommand]
-	async Task CenterViewAsync()
-	{
-		await Shell.Current.DisplayAlert("Alert", "You tapped the center view", "OK");
-	}
 }
 

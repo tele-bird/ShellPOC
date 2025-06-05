@@ -10,6 +10,7 @@
     x:TypeArguments="viewmodels:MarketTestViewModel"
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="True"
+    BackgroundColor="Aqua"
     Title="Test Page"
     x:Name="this">
     <ContentPage.Content>

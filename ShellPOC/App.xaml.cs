@@ -1,14 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace ShellPOC;
+﻿namespace ShellPOC;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class App : Application
 {
+	private readonly IServiceProvider _serviceProvider;
+
 	public App(IServiceProvider serviceProvider)
 	{
+		_serviceProvider = serviceProvider;
 		InitializeComponent();
-		MainPage = serviceProvider.GetRequiredService<AppShell>();
+	}
+
+	protected override Window CreateWindow(IActivationState? activationState)
+	{
+		return new Window(_serviceProvider.GetRequiredService<AppShell>());
 	}
 }
 

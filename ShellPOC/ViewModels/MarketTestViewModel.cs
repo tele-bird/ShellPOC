@@ -11,6 +11,8 @@ public class MarketTestViewModel : BaseMarketViewModel
         : base(
             appStateManager, 
             new ShellPage("..", "Back one page with the same market selected"),
+            new ShellPage("fulldrawer", "Full drawer pushed atop this page with the same market selected"),
+            new ShellPage("halfdrawer", "Half drawer pushed atop this page with the same market selected"),
             new ShellPage("//landing", "Back to Landing page with no market selected"),
             new ShellPage("test", "Test page pushed atop this page with the same market selected"),
             new ShellPage("test?marketId=4", "Test page pushed atop this page with market 4 selected"),
